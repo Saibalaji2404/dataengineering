@@ -1,0 +1,22 @@
+{
+	"name": "global_parameter_pipeline_3",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().globalParameters.global_parameter",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-04T12:40:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

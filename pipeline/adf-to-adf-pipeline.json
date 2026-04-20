@@ -1,0 +1,37 @@
+{
+	"name": "adf-to-adf-pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://management.azure.com/subscriptions/863cbc1e-f462-459a-92b7-e139e4082b55/resourceGroups/practisingrsg/providers/Microsoft.DataFactory/factories/saiadfwebhook/pipelines/simple_wait_pipeline_webhook/createRun?api-version=2018-06-01",
+					"authentication": {
+						"type": "ServicePrincipal",
+						"userTenant": "f742e6ed-c915-499a-a238-e9f8d7446b0b",
+						"username": "06e30924-48b6-4340-9c53-7fc1dfa8a385",
+						"resource": "https://management.azure.com/",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-18T09:06:38Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

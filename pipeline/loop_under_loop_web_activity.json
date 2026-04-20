@@ -1,0 +1,105 @@
+{
+	"name": "loop_under_loop_web_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "Trigger_Pipeline",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://management.azure.com/subscriptions/863cbc1e-f462-459a-92b7-e139e4082b55/resourceGroups/practisingrsg/providers/Microsoft.DataFactory/factories/saiadfwebhook/pipelines/simple_wait_pipeline_webhook/createRun?api-version=2018-06-01",
+					"authentication": {
+						"type": "ServicePrincipal",
+						"userTenant": "f742e6ed-c915-499a-a238-e9f8d7446b0b",
+						"username": "06e30924-48b6-4340-9c53-7fc1dfa8a385",
+						"resource": "https://management.azure.com",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
+				}
+			},
+			{
+				"name": "Until_completed",
+				"type": "Until",
+				"dependsOn": [
+					{
+						"activity": "Trigger_Pipeline",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@or(\n    equals(activity('Check Status').output.status, 'Succeeded' ), \n    or(\n        equals(activity('Check Status').output.status,'Failed'),\n        equals(activity('Check Status').output.status,'Cancelled')\n    )\n)",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Check Status",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "GET",
+								"url": {
+									"value": "@concat('https://management.azure.com/subscriptions/863cbc1e-f462-459a-92b7-e139e4082b55/resourceGroups/practisingrsg/providers/microsoft.DataFactory/factories/saiadfwebhook/pipelineruns/', activity('Trigger_Pipeline').output.runId, '?api-version=2018-06-01')",
+									"type": "Expression"
+								},
+								"authentication": {
+									"type": "ServicePrincipal",
+									"userTenant": "f742e6ed-c915-499a-a238-e9f8d7446b0b",
+									"username": "06e30924-48b6-4340-9c53-7fc1dfa8a385",
+									"resource": "https://management.azure.com",
+									"password": {
+										"type": "SecureString",
+										"value": "**********"
+									}
+								}
+							}
+						},
+						{
+							"name": "Wait 10 Seconds",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "Check Status",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 10
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-19T08:30:19Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

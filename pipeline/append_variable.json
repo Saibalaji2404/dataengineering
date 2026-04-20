@@ -1,0 +1,109 @@
+{
+	"name": "append_variable",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "length",
+					"value": {
+						"value": "@length(variables('arr'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Append variable1",
+				"type": "AppendVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "arr",
+					"value": "20"
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "first",
+					"value": {
+						"value": "@first(variables('arr'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Append variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "length",
+					"value": {
+						"value": "@length(variables('arr'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"arr": {
+				"type": "Array",
+				"defaultValue": [
+					2,
+					4,
+					5,
+					7
+				]
+			},
+			"length": {
+				"type": "Integer"
+			},
+			"first": {
+				"type": "Integer"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-05T06:58:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

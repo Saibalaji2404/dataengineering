@@ -1,0 +1,76 @@
+{
+	"name": "multiple_activites_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "map1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.paramater1",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "map2",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "map1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "map3",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "map1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "map4",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "map1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"parameters": {
+			"paramater1": {
+				"type": "int",
+				"defaultValue": 3
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-04T04:04:17Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

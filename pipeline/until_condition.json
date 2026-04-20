@@ -1,0 +1,44 @@
+{
+	"name": "until_condition",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(pipeline().parameters.number,5)",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 2
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"parameters": {
+			"bool": {
+				"type": "bool",
+				"defaultValue": false
+			},
+			"number": {
+				"type": "int",
+				"defaultValue": 2
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-06T08:14:09Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "ds_sql_to_sql_copy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedservices_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "sqlde",
+			"table": "filetodbcopyactivity_01"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

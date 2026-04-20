@@ -1,0 +1,41 @@
+{
+	"name": "webhook_activity",
+	"properties": {
+		"activities": [
+			{
+				"name": "WebHook1",
+				"type": "WebHook",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/863cbc1e-f462-459a-92b7-e139e4082b55/resourceGroups/practisingrsg/providers/Microsoft.DataFactory/factories/saiadfwebhook/pipelines/call_back_pipeline/createRun?api-version=2018-06-01",
+					"method": "POST",
+					"body": {
+						"parameters": {
+							"status": " "
+						}
+					},
+					"timeout": "00:10:00",
+					"reportStatusOnCallBack": true,
+					"authentication": {
+						"type": "ServicePrincipal",
+						"password": {
+							"type": "SecureString",
+							"value": "**********"
+						},
+						"userTenant": "f742e6ed-c915-499a-a238-e9f8d7446b0b",
+						"username": "06e30924-48b6-4340-9c53-7fc1dfa8a385",
+						"resource": "https://management.azure.com"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-19T09:24:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

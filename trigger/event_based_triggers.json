@@ -1,0 +1,25 @@
+{
+	"name": "event_based_triggers",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "validation_and_fail_activity",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/bigdata/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/863cbc1e-f462-459a-92b7-e139e4082b55/resourceGroups/practisingrsg/providers/Microsoft.Storage/storageAccounts/practisestggen2",
+			"events": [
+				"Microsoft.Storage.BlobCreated",
+				"Microsoft.Storage.BlobDeleted"
+			]
+		}
+	}
+}

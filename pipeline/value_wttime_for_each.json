@@ -1,0 +1,46 @@
+{
+	"name": "value_wttime_for_each",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('arr')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"arr": {
+				"type": "Array",
+				"defaultValue": [
+					3,
+					5,
+					7
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-06T07:49:18Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

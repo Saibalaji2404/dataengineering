@@ -1,0 +1,19 @@
+{
+	"name": "execute_pipeline_calling",
+	"properties": {
+		"activities": [
+			{
+				"name": "calling_pipeline",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 3
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-04-04T04:07:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
