@@ -1,0 +1,138 @@
+{
+	"name": "built-in-copy-pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_6zs",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.cw_items",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy_6zs",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [
+								{
+									"name": "Source",
+									"value": "sqlde.@{item().source.table}"
+								},
+								{
+									"name": "Destination",
+									"value": "bigdata/built_in_copy_output/@{item().destination.fileName}"
+								}
+							],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"validateDataConsistency": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SourceDataset_6zs",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_table": "@item().source.table"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DestinationDataset_6zs",
+									"type": "DatasetReference",
+									"parameters": {
+										"cw_fileName": "@item().destination.fileName"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"cw_items": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"source": {
+							"table": "depts"
+						},
+						"destination": {
+							"fileName": "sqlde.depts.txt"
+						}
+					},
+					{
+						"source": {
+							"table": "emp"
+						},
+						"destination": {
+							"fileName": "sqlde.emp.txt"
+						}
+					},
+					{
+						"source": {
+							"table": "employees"
+						},
+						"destination": {
+							"fileName": "sqlde.employees.txt"
+						}
+					},
+					{
+						"source": {
+							"table": "emps"
+						},
+						"destination": {
+							"fileName": "sqlde.emps.txt"
+						}
+					},
+					{
+						"source": {
+							"table": "prjcts"
+						},
+						"destination": {
+							"fileName": "sqlde.prjcts.txt"
+						}
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-17T16:24:49Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

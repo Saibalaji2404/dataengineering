@@ -1,0 +1,24 @@
+{
+	"name": "ds_conditional_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "linkedservices_adl_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "data_flow_condition_output",
+				"fileSystem": "bigdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

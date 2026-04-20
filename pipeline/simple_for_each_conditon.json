@@ -1,0 +1,44 @@
+{
+	"name": "simple_for_each_conditon",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.arr",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"arr": {
+				"type": "array",
+				"defaultValue": [
+					12,
+					13,
+					14
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-06T07:44:46Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

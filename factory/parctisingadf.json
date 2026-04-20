@@ -1,0 +1,17 @@
+{
+	"name": "parctisingadf",
+	"properties": {
+		"globalParameters": {
+			"global_parameter": {
+				"type": "int",
+				"value": 3
+			}
+		}
+	},
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "de28bb75-23d1-4495-816c-a19d845c8e36",
+		"tenantId": "f742e6ed-c915-499a-a238-e9f8d7446b0b"
+	}
+}

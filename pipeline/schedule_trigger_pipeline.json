@@ -1,0 +1,28 @@
+{
+	"name": "schedule_trigger_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "schedule_trigger_wait",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.schedule_parameter",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"schedule_parameter": {
+				"type": "int",
+				"defaultValue": 3
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-04T03:35:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

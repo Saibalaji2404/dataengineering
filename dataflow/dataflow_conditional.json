@@ -1,0 +1,72 @@
+{
+	"name": "dataflow_conditional",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dataflowread",
+						"type": "DatasetReference"
+					},
+					"name": "readdata"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_conditional_output",
+						"type": "DatasetReference"
+					},
+					"name": "targetdata"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_partition",
+						"type": "DatasetReference"
+					},
+					"name": "false"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Emp_No as string,",
+				"          Emp_Name as string,",
+				"          Emp_Salary as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> readdata",
+				"readdata split(Emp_No>'108',",
+				"     disjoint: false) ~> split1@(true, false)",
+				"split1@true sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> targetdata",
+				"split1@false sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          Sale_ID as string,",
+				"          Product as string,",
+				"          Region as string,",
+				"          Sales_Amount as string,",
+				"          Date as string,",
+				"          month as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> false"
+			]
+		}
+	}
+}

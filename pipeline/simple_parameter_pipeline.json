@@ -1,0 +1,28 @@
+{
+	"name": "simple_parameter_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "al_wait2",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": {
+						"value": "@pipeline().parameters.p1",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"p1": {
+				"type": "int",
+				"defaultValue": 6
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-03T08:21:32Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,36 @@
+{
+	"name": "schedule_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "schedule_trigger_pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"schedule_parameter": 3
+				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "multiple_activites_pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"paramater1": 3
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2026-04-04T03:45:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

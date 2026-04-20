@@ -1,0 +1,83 @@
+{
+	"name": "switch_case_condition",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.name",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "poosarla",
+							"activities": [
+								{
+									"name": "poosarla",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 2
+									}
+								}
+							]
+						},
+						{
+							"value": "sai",
+							"activities": [
+								{
+									"name": "sai",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 3
+									}
+								}
+							]
+						},
+						{
+							"value": "balaji",
+							"activities": [
+								{
+									"name": "balaji",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "default",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"name": {
+				"type": "string",
+				"defaultValue": "sai"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-04-05T07:51:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
