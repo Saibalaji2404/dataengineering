@@ -1,0 +1,15 @@
+{
+	"name": "saidatafactory321",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ab3c36a8-c1e5-494a-b305-5a44530a02d4",
+		"tenantId": "3fa64f57-442b-4cfa-885b-47f839b1704c"
+	}
+}
