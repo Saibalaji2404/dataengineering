@@ -1,0 +1,15 @@
+{
+	"name": "saiadf24",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "78d18a04-efcf-49e7-a7c8-caa3ac29e56f",
+		"tenantId": "7c5e6aca-5882-4d98-a3cb-6c11409369bd"
+	}
+}
